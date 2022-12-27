@@ -1,24 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import Modal from "./components/ModalPopup"
+import { Fragment } from "react";
+import NavBar from "./components/NavBar";
+import Shopping from "./components/Shopping";
+import { useState } from "react";
 
 function App() {
+  const [open,setOpen] = useState(false)
+
+   const handleOpen = () => setOpen(true); 
+   const handleClose = () => setOpen(false); 
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Fragment>
+        <NavBar handleOpen={handleOpen}/>
+        <Modal  handleClose={handleClose} open={open} />
+        <Shopping />
+    </Fragment>
   );
 }
 
