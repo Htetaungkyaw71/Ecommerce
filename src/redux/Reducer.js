@@ -1,42 +1,13 @@
 import { GET_DATA, ADD_DATA, REMOVE_DATA } from "./actions";
 
 const initialState = {
-products:[
-    {
-        id:1,
-        name:"Shirt1",
-        description:"Good shirt",
-        image:"https://images.pexels.com/photos/7621270/pexels-photo-7621270.jpeg?auto=compress&cs=tinysrgb&w=600",
-        price:"22.33"
-    },
-    {
-        id:2,
-        name:"Shirt2",
-        description:"Good shirt",
-        image:"https://images.pexels.com/photos/10129710/pexels-photo-10129710.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        price:"22.33"
-    },
-    {
-        id:3,
-        name:"Shirt3",
-        description:"Good shirt",
-        image:"https://images.pexels.com/photos/4924650/pexels-photo-4924650.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        price:"22.33"
-    },
-    {
-        id:4,
-        name:"Shirt4",
-        description:"Good shirt",
-        image:"https://images.pexels.com/photos/9433782/pexels-photo-9433782.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
-        price:"22.33"
-    },
-],
+products:[],
 carts:[]
 }
 function itemReducer(state=initialState,actions){
     switch (actions.type) {
-        case GET_DATA:
-            return state;
+        case `${GET_DATA}/fulfilled`:
+            return {products:actions.payload,carts:[]};
         case ADD_DATA:
             let add_item = state.products.find(item => {
                 return item.id === actions.payload

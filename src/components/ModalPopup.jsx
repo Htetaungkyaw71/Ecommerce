@@ -20,7 +20,21 @@ function ModalPopus(props) {
     bgcolor: 'background.paper',
     boxShadow: 24,
     p: 4,
+    overflow:'scroll',
+    height:'100%',
+    display:'block',
   };
+  const style1 = {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: 'translate(-50%, -50%)',
+    width: 400,
+    bgcolor: 'background.paper',
+    boxShadow: 24,
+    p: 4,
+  };
+
 
 
 
@@ -40,12 +54,12 @@ function ModalPopus(props) {
       aria-labelledby="modal-modal-title"
       aria-describedby="modal-modal-description"
     >
-      <Box sx={style}>
+      <Box sx={carts.length > 5 ? style: style1}>
         <Typography id="modal-modal-title" variant="h6" component="h2">
         Your shopping cart
         </Typography>
         <CartList/>
-        <Typography id="modal-modal-description"sx={{ mt: 2 }}>
+        <Typography id="modal-modal-description"sx={{ mt: 2 ,fontWeight:"bold"}}>
         Total: ${total.toFixed(2)}
         </Typography>
       </Box>

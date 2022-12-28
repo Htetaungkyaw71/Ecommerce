@@ -3,7 +3,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
-import { Button, CardActionArea, CardActions, Grid } from '@mui/material';
+import { Button, CardActionArea, CardActions, Chip, Grid } from '@mui/material';
 import { addCart } from '../redux/actions';
 import { useDispatch } from 'react-redux';
 
@@ -15,24 +15,21 @@ function CardItem({item}) {
   }
 
   return (
-    <Grid item xs={6} mt={5} mb={5}>
+    <Grid item xs={12} md={4} sm={6} mt={5} mb={5}>
       <Card sx={{ maxWidth: 345 }} >
         <CardActionArea>
           <CardMedia
             component="img"
-            height="140"
+            height="200"
             image={item.image}
             alt="green iguana"
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div" align="left">
-              {item.name}
-            </Typography>
-            <Typography variant="body2" color="text.secondary" align="left">
-              {item.description}
-            </Typography>
-            <Typography variant="body2" color="text.secondary" align="left">
-              ${item.price}
+            <Typography gutterBottom component="div" align="left">
+              {item.name} <Chip label={item.brand} color="primary" size="small"/>
+            </Typography>     
+            <Typography variant="h6" color="text.secondary" align="left" sx={{mt:3}}>
+              ${item.price}       
             </Typography>
           </CardContent>
         </CardActionArea>
