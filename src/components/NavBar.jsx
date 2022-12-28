@@ -3,12 +3,12 @@ import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
-import Button from '@mui/material/Button';
 import IconButton from '@mui/material/IconButton';
 import Badge from '@mui/material/Badge';
 import { styled } from '@mui/material/styles';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 
 export default function NavBar(props) {
@@ -42,9 +42,14 @@ export default function NavBar(props) {
             sx={{ mr: 2 }}
           >
           </IconButton>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-            Shopping
-          </Typography>
+       
+            <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+            <Link to="/" className='home_link'>
+                Shoppe
+              </Link>
+            </Typography>
+      
+       
             <IconButton aria-label="cart"  onClick={props.handleOpen}>
               <StyledBadge badgeContent={amount} color="primary">
                   <ShoppingCartIcon style={{ color: "white" }} />  

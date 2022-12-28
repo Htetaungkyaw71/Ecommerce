@@ -2,7 +2,7 @@ import * as React from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
-import { Grid, IconButton, Typography } from '@mui/material';
+import { Avatar, Grid, IconButton, ListItemAvatar, Typography } from '@mui/material';
 import AddCircleOutlineIcon from '@mui/icons-material/AddCircleOutline';
 import RemoveCircleOutlineIcon from '@mui/icons-material/RemoveCircleOutline';
 import { useDispatch, useSelector } from 'react-redux';
@@ -25,15 +25,36 @@ export default function CartList() {
 
     let generate = carts.map(item => {
         return (
-            <ListItem key={item.id}>
+            <ListItem key={item.id} alignItems="flex-start">
                 <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                    <Grid item xs={6}>
-                    <ListItemText
-                        primary={item.name}
-                        secondary={`$${item.price}`}
+                    <Grid item xs={9} display='flex'>
+                    <ListItemAvatar>
+                        <Avatar alt="product" src={item.image} />
+                    </ListItemAvatar>
+                    <ListItemText              
+                        primary={
+                            <Typography
+                            component="div"
+                            variant="body2"
+                            color="text.primary"
+                          >
+                           {item.name}
+                          </Typography>
+                        }
+                    
+                        secondary={
+                            <Typography
+                            sx={{fontWeight:"bold"}}
+                            component="span"
+                            variant="body2"
+                            color="text.primary"
+                          >
+                               ${item.price}
+                          </Typography>
+                        }
                         />
                     </Grid>
-                    <Grid item xs={6}  alignItems="center">
+                    <Grid item xs={3}  alignItems="center">
                         <IconButton edge="end" aria-label="Remove" onClick={()=>remove_cart(item.id)}>    
                             <RemoveCircleOutlineIcon /> 
                         </IconButton>
