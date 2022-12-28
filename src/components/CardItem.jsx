@@ -6,6 +6,9 @@ import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions, Chip, Grid } from '@mui/material';
 import { addCart } from '../redux/actions';
 import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+
 
 
 function CardItem({item}) {
@@ -17,6 +20,7 @@ function CardItem({item}) {
   return (
     <Grid item xs={12} md={4} sm={6} mt={5} mb={5}>
       <Card sx={{ maxWidth: 345 }} >
+      <Link to={`/${item.id}`} className="link">
         <CardActionArea>
           <CardMedia
             component="img"
@@ -24,17 +28,22 @@ function CardItem({item}) {
             image={item.image}
             alt="green iguana"
           />
-          <CardContent>
-            <Typography gutterBottom component="div" align="left">
-              {item.name} <Chip label={item.brand} color="primary" size="small"/>
-            </Typography>     
-            <Typography variant="h6" color="text.secondary" align="left" sx={{mt:3}}>
+          <CardContent align="left">
+       
+            <Typography gutterBottom component="div">
+              {item.name}   <Chip label={item.brand} color="primary" size="small" />
+            </Typography>    
+          
+            <Typography variant="h6" color="text.secondary"  sx={{mt:3}}>
               ${item.price}       
             </Typography>
           </CardContent>
         </CardActionArea>
+        </Link>
+      
+    
         <CardActions>
-          <Button size="small" color="primary" onClick={()=>addToCart(item.id)}>
+          <Button variant="contained" size="medium" onClick={()=>addToCart(item.id)}>
             Add to Cart
           </Button>
         </CardActions>

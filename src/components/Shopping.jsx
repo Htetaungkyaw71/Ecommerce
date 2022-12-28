@@ -10,8 +10,10 @@ function Shopping() {
     const {products} = useSelector((state)=>state.items)
     const dispatch = useDispatch()
     useEffect(()=>{
-        dispatch(getData())
-    },[dispatch])
+        if(products.length <= 0){
+            dispatch(getData())
+        }
+    },[dispatch, products.length])
 
     if(products.length <= 0){
         return <Loading/>
