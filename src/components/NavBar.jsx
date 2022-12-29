@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -9,10 +9,30 @@ import { styled } from '@mui/material/styles';
 import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import GoogleAuth from '../GoogleAuth';
+import {
+  signOut,
+  onAuthStateChanged} from "firebase/auth"
+import { auth } from '../firebase'
+
 
 
 export default function NavBar(props) {
+  const [user, setUser] = useState({});
+    const logOut = () => {
+      signOut(auth)
+  }
 
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+      setUser(currentUser);
+      console.log('User', currentUser)
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+  
   const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
       right: -3,
@@ -28,6 +48,14 @@ export default function NavBar(props) {
     for(let obj of carts){
       amount += parseInt(obj.amount) 
     } 
+  }
+
+  const handleLogout = async()=>{
+    try {
+      await logOut()
+    } catch (error) {
+      console.log(error)
+    }
   }
 
   return (
@@ -48,8 +76,13 @@ export default function NavBar(props) {
                 Shoppe
               </Link>
             </Typography>
-      
-       
+            {user ? 
+            <button onClick={handleLogout} className='google-btn'>
+               LogOut
+              </button>
+            :
+            <GoogleAuth/>
+          }
             <IconButton aria-label="cart"  onClick={props.handleOpen}>
               <StyledBadge badgeContent={amount} color="primary">
                   <ShoppingCartIcon style={{ color: "white" }} />  

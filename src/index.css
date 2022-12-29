@@ -63,6 +63,18 @@
   text-decoration: none;
   color: white;
 }
+.google{
+  margin-right: 30px;
+}
+.google-btn{
+  margin-right: 30px;
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  color:#1976D2;
+  border-radius: 5px;
+  font-size: 15px;
+}
 
 
 @media screen and (max-width:406px) {
