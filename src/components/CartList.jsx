@@ -27,7 +27,7 @@ export default function CartList() {
         return (
             <ListItem key={item.id} alignItems="flex-start">
                 <Grid container rowSpacing={1} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                    <Grid item xs={9} display='flex'>
+                    <Grid item xs={12} sm={12} md={9} display='flex'>
                     <ListItemAvatar>
                         <Avatar alt="product" src={item.image} />
                     </ListItemAvatar>
@@ -54,7 +54,7 @@ export default function CartList() {
                         }
                         />
                     </Grid>
-                    <Grid item xs={3}  alignItems="center">
+                    <Grid item xs={12} sm={12} md={3}  alignItems="center">
                         <IconButton edge="end" aria-label="Remove" onClick={()=>remove_cart(item.id)}>    
                             <RemoveCircleOutlineIcon /> 
                         </IconButton>

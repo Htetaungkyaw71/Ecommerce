@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
@@ -11,27 +11,16 @@ import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import GoogleAuth from '../GoogleAuth';
 import {
-  signOut,
-  onAuthStateChanged} from "firebase/auth"
+  signOut} from "firebase/auth"
 import { auth } from '../firebase'
 
 
 
+
 export default function NavBar(props) {
-  const [user, setUser] = useState({});
     const logOut = () => {
       signOut(auth)
   }
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      setUser(currentUser);
-      console.log('User', currentUser)
-    });
-    return () => {
-      unsubscribe();
-    };
-  }, []);
   
   const StyledBadge = styled(Badge)(({ theme }) => ({
     '& .MuiBadge-badge': {
@@ -76,11 +65,12 @@ export default function NavBar(props) {
                 Shoppe
               </Link>
             </Typography>
-            {user ? 
+            {props.user ? 
             <button onClick={handleLogout} className='google-btn'>
                LogOut
               </button>
             :
+          
             <GoogleAuth/>
           }
             <IconButton aria-label="cart"  onClick={props.handleOpen}>
