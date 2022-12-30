@@ -1,10 +1,10 @@
 import React from 'react'
-import GoogleButton from 'react-google-button'
 import {
     GoogleAuthProvider,
     signInWithPopup,
    } from "firebase/auth"
 import { auth } from './firebase'
+import { Google } from '@mui/icons-material';
 
 function GoogleAuth() {
 
@@ -25,9 +25,10 @@ function GoogleAuth() {
 
   return (
     <div className='google'>
-         <GoogleButton
-              onClick={() => handleClick()}
-            />
+      <button  onClick={() => handleClick()}>
+        Sign In with
+      <Google sx={{ml:1}}/>
+      </button>
     </div>
   )
 }

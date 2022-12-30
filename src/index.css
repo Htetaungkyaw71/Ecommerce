@@ -66,6 +66,17 @@
 .google{
   margin-right: 30px;
 }
+
+.google button {
+  padding: 10px;
+  border: none;
+  cursor: pointer;
+  color:#1976D2;
+  border-radius: 5px;
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+}
 .google-btn{
   margin-right: 30px;
   padding: 10px;
@@ -86,6 +97,20 @@
     width: 80px;
     height: 80px;
   }
+  .google {
+    margin-right: 5px;
+  }
+  .google button {
+    padding: 5px;
+    border: none;
+    cursor: pointer;
+    color:#1976D2;
+    border-radius: 5px;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+  }
+
 
 }
 
